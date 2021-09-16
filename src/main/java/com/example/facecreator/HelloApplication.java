@@ -40,7 +40,7 @@ public class HelloApplication extends Application {
         drawRandomFace();
         stage.show();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), event -> {
             gc.clearRect(0, 0, width, height);
             try {
                 drawRandomFace();
@@ -48,19 +48,10 @@ public class HelloApplication extends Application {
                 e.printStackTrace();
             }
         }));
-        timeline.setCycleCount(360);
+        timeline.setCycleCount(500);
         timeline.play();
 
     }
-
-    /*
-    public static void drawPrimitiveFace() {
-        drawShape();
-        drawMouth();
-        drawEyes();
-    }
-
-     */
 
     public static void drawRandomFace(){
         Random random = new Random();
@@ -71,7 +62,7 @@ public class HelloApplication extends Application {
         int eyeWidth = getRandomInt(30, 10);
         int eyeNarrowness = getRandomInt(30, 10);
         int eyeSeparation = getRandomInt(10, -10);
-        int eyeHeight = getRandomInt(230, 210);
+        int eyeHeight = getRandomInt(250, 230);
         int noseLength = getRandomInt(10, -10);
         int noseHeight = getRandomInt(10, -10);
         int noseWidth = getRandomInt(10, -10);
@@ -85,7 +76,7 @@ public class HelloApplication extends Application {
         drawRandomMouth(mouthWidth, mouthHeight);
         drawRandomEyes(eyeWidth, eyeNarrowness, eyeSeparation, eyeHeight, eyeRed, eyeGreen, eyeBlue);
         drawRandomNose(noseLength, noseHeight, noseWidth);
-        drawRandomHair(hairRed, hairGreen, hairBlue);
+        drawRandomHair(hairRed, hairGreen, hairBlue, headWidth);
     }
 
     public static int getRandomInt (int maxValue, int minValue){
@@ -117,33 +108,10 @@ public class HelloApplication extends Application {
         gc.fillPolygon(new double[]{300, 300, 330+noseWidth}, new double[]{320+noseHeight+noseLength, 270+noseHeight, 320+noseHeight+noseLength}, 3);
     }
 
-    public static void drawRandomHair(int hairRed, int hairGreen, int hairBlue){
+    public static void drawRandomHair(int hairRed, int hairGreen, int hairBlue, int headWidth){
         gc.setFill(Color.rgb(hairRed,hairGreen,hairBlue));
-        gc.fillArc(170, 130, 270, 150, 350, 200, ArcType.ROUND);
+        gc.fillArc(170, 130, headWidth-35, 150, 350, 200, ArcType.ROUND);
     }
-    /*
-    public static void drawShape() {
-        gc.strokeOval(150, 150, 300, 300);
-    }
-
-     */
-
-    /*
-    public static void drawMouth() {
-        gc.setFill(Color.BLACK);
-        gc.fillOval(280,370,50,50);
-    }
-
-     */
-
-    /*
-    public static void drawEyes() {
-        gc.setFill(Color.BLACK);
-        gc.fillOval(220,220,20,20);
-        gc.fillOval(360,220,20,20);
-    }
-
-     */
 
     public static void main(String[] args) {
         launch();
